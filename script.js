@@ -454,6 +454,10 @@ const volumeSlider   = document.getElementById("volume-slider");
 const settingsToggle = document.getElementById("settings-toggle");
 const settingsPanel  = document.getElementById("settings-panel");
 
+// 🔔 صوت العدّ التنازلي (يشتغل طول وقت السؤال)
+const countdownSound = new Audio("sounds/timeup.mp3"); // تقدر تغيّر الملف لو حاب
+countdownSound.loop = true;
+
 // Master mute state
 let isMuted = false;
 
@@ -465,7 +469,7 @@ function updateMuteIcon() {
 
 function setMasterMute(muted) {
   isMuted = muted;
-  [bgMusic, soundCorrect, soundWrong, soundTimeup].forEach((audioEl) => {
+  [bgMusic, soundCorrect, soundWrong, soundTimeup, countdownSound].forEach((audioEl) => {
     if (audioEl) audioEl.muted = muted;
   });
   updateMuteIcon();
@@ -502,6 +506,23 @@ function playSfx(audioEl) {
   if (!audioEl || isMuted) return;
   audioEl.currentTime = 0;
   audioEl.play().catch(() => {});
+}
+
+// ====== صوت العد التنازلي الخاص بالسؤال ======
+// يبدأ التشغيل عند بداية كل سؤال
+function startCountdownTick() {
+  if (!countdownSound || isMuted) return;
+  const v = volumeSlider ? parseFloat(volumeSlider.value) || 0.4 : 0.4;
+  countdownSound.volume = v;
+  countdownSound.currentTime = 0;
+  countdownSound.play().catch(() => {});
+}
+
+// يوقف التشغيل عند انتهاء الوقت أو عند الإجابة
+function stopCountdownTick() {
+  if (!countdownSound) return;
+  countdownSound.pause();
+  countdownSound.currentTime = 0;
 }
 
 // ====== HELPERS ======
@@ -574,6 +595,9 @@ function renderCurrentQuestionOnly() {
 function loadQuestion() {
   if (timerId) clearInterval(timerId);
 
+  // 🔴 نوقف صوت العدّ التنازلي من السؤال السابق قبل ما نبدأ الجديد
+  stopCountdownTick();
+
   if (currentIndex >= currentQuestions.length) {
     endCategory();
     return;
@@ -601,14 +625,21 @@ function loadQuestion() {
 
   const t = texts[currentLanguage];
 
+  // ✅ نشغّل صوت العدّ التنازلي أول ما يبدأ السؤال
+  startCountdownTick();
+
   timerId = setInterval(() => {
     timeLeft--;
     timerSpan.textContent = timeLeft.toString();
     if (timeLeft <= 0) {
       clearInterval(timerId);
       canAnswer = false;
+
+      // ⛔ نوقف صوت العد التنازلي لأن الوقت خلص
+      stopCountdownTick();
+
       showCorrectAnswer(true, t);
-      // صوت انتهاء العد التنازلي
+      // صوت انتهاء العد التنازلي (مرة واحدة)
       playSfx(soundTimeup);
       setTimeout(() => {
         currentIndex++;
@@ -623,6 +654,9 @@ function handleChoiceClick(choiceIndex) {
   canAnswer = false;
 
   clearInterval(timerId);
+
+  // ⛔ نوقف صوت العد التنازلي لما اللاعب يجاوب
+  stopCountdownTick();
 
   const q = currentQuestions[currentIndex];
   const choiceButtons = document.querySelectorAll(".choice-btn");
@@ -681,6 +715,9 @@ function endCategory() {
   resultCoinsSpan.textContent = score.toString();
   resultAccuracySpan.textContent = accuracy.toString();
 
+  // نضمن أن صوت العد التنازلي موقف لما نطلع لنتيجة
+  stopCountdownTick();
+
   showScreen(resultScreen);
 }
 
@@ -726,6 +763,8 @@ if (volumeSlider && bgMusic) {
   volumeSlider.addEventListener("input", () => {
     const v = parseFloat(volumeSlider.value);
     bgMusic.volume = v;
+    countdownSound.volume = v; // 🔊 نربط صوت العد التنازلي بنفس مستوى الصوت
+
     if (v > 0 && isMuted) {
       setMasterMute(false);
     }
@@ -769,6 +808,8 @@ categoryBackBtn.addEventListener("click", () => {
 // Quiz screen back
 backBtn.addEventListener("click", () => {
   if (timerId) clearInterval(timerId);
+  // نوقف صوت العد التنازلي لو رجع من نص الكويز
+  stopCountdownTick();
   showScreen(categoryScreen);
 });
 
