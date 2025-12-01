@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kraken Competitions</title>
+  <link rel="icon" type="image/png" href="images/mm.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ocean Waves Background -->
+  <div class="wave wave1"></div>
+  <div class="wave wave2"></div>
+  <div class="wave wave3"></div>
+
+  <div id="game-container">
+
+    <!-- Settings (Language + Audio) -->
+    <div id="settings-wrapper" class="settings-wrapper">
+      <!-- زر الإعدادات -->
+      <button id="settings-toggle" class="settings-btn" aria-label="Settings">⚙</button>
+
+      <!-- القائمة المنسدلة -->
+      <div id="settings-panel" class="settings-panel">
+        <!-- قسم اللغة -->
+        <div class="settings-section">
+          <span class="settings-label">Language</span>
+          <div id="lang-switcher" class="lang-switcher-inside">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ar">AR</button>
+          </div>
+        </div>
+
+        <!-- قسم الصوت -->
+        <div class="settings-section">
+          <span class="settings-label">Sound</span>
+          <div id="audio-controls" class="audio-controls-inside">
+            <button id="mute-btn" class="audio-btn" aria-label="Mute / Unmute">🔊</button>
+            <input
+              id="volume-slider"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.4"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Start Screen -->
+    <div id="start-screen" class="screen active">
+      <img src="images/kraken-logo.png" alt="Kraken Team Logo" class="logo" />
+      <h1 class="title" id="start-title"></h1>
+      <p class="subtitle" id="start-subtitle"></p>
+      <div class="center-buttons">
+        <button id="start-btn" class="primary-btn"></button>
+        <button id="instructions-btn" class="secondary-btn"></button>
+      </div>
+    </div>
+
+    <!-- Instructions Screen -->
+    <div id="instructions-screen" class="screen">
+      <h2 class="title" id="instr-title"></h2>
+
+      <div class="instructions-box">
+        <ul id="instr-list"></ul>
+      </div>
+
+      <div class="center-buttons">
+        <button id="instructions-back-btn" class="secondary-btn"></button>
+        <button id="go-categories-btn" class="primary-btn"></button>
+      </div>
+    </div>
+
+    <!-- Category Screen -->
+    <div id="category-screen" class="screen">
+      <h1 class="title" id="cat-title"></h1>
+      <p class="subtitle" id="cat-subtitle"></p>
+
+      <div class="category-grid">
+        <button class="category-btn" data-category="geography" id="btn-cat-geo"></button>
+        <button class="category-btn" data-category="countries" id="btn-cat-countries"></button>
+        <button class="category-btn" data-category="it" id="btn-cat-it"></button>
+        <button class="category-btn" data-category="general" id="btn-cat-general"></button>
+      </div>
+
+      <p class="hint" id="cat-hint"></p>
+
+      <div class="center-buttons">
+        <button id="category-back-btn" class="secondary-btn"></button>
+      </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="screen">
+      <div class="top-bar">
+        <button id="back-btn" class="back-btn"></button>
+        <div class="info-box">
+          <span class="label" id="label-coins"></span>
+          <span id="score" class="value">0</span> 🪙
+        </div>
+        <div class="info-box">
+          <span class="label" id="label-time"></span>
+          <span id="timer" class="value">10</span> s
+        </div>
+      </div>
+
+      <div class="quiz-card">
+        <div class="quiz-header">
+          <div class="current-category">
+            <span id="label-category"></span>
+            <span id="category-name"></span>
+          </div>
+          <div class="progress">
+            <span id="label-question"></span>
+            <span id="question-number">1</span> /
+            <span id="total-questions">5</span>
+          </div>
+        </div>
+
+        <div class="question-area">
+          <h2 id="question-text"></h2>
+        </div>
+
+        <div id="choices" class="choices"></div>
+
+        <div id="feedback" class="feedback"></div>
+      </div>
+    </div>
+
+    <!-- Final Result Screen -->
+    <div id="result-screen" class="screen">
+      <h2 class="title" id="result-title"></h2>
+      <p class="subtitle">
+        <span id="result-label-category"></span>
+        <span id="result-category"></span>
+      </p>
+
+      <div class="result-box">
+        <p>
+          <span id="result-label-total"></span>
+          <span id="result-total"></span>
+        </p>
+        <p>
+          <span id="result-label-correct"></span>
+          <span id="result-correct"></span>
+        </p>
+        <p>
+          <span id="result-label-coins"></span>
+          <span id="result-coins"></span> 🪙
+        </p>
+        <p>
+          <span id="result-label-accuracy"></span>
+          <span id="result-accuracy"></span>%
+        </p>
+      </div>
+
+      <div class="center-buttons">
+        <button id="result-again-btn" class="primary-btn"></button>
+        <button id="result-home-btn" class="secondary-btn"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sounds -->
+  <audio id="sound-correct" src="sounds/correct.mp3" preload="auto"></audio>
+  <audio id="sound-wrong"   src="sounds/wrong.mp3"  preload="auto"></audio>
+  <audio id="sound-timeup"  src="sounds/timeup.mp3" preload="auto"></audio>
+  <audio id="bg-music"      src="sounds/wrong1.wav" loop></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

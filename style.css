@@ -1,0 +1,491 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Body with Ocean Theme */
+body {
+  cursor: url("images/octo-normal.png") 16 16, auto; /* مؤشر الأخطبوط */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #001f3f, #004f8c, #0099cc);
+  overflow: hidden;
+  color: #f9fbff;
+}
+
+body:active {
+  cursor: url("images/octo-hand.png") 16 16, auto; /* يد الأخطبوط لما تكبس في مكان فاضي */
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 4px auto;
+  max-width: 350px;
+  height: auto;
+}
+
+/* خصيصًا لصفحة البداية */
+#start-screen .title {
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+/* Waves */
+.wave {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  height: 160px;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.6), transparent 60%);
+  opacity: 0.35;
+  border-radius: 50%;
+  animation: wave 12s linear infinite;
+  pointer-events: none;
+}
+
+.wave2 {
+  animation-duration: 18s;
+  opacity: 0.25;
+  transform: translateY(20px);
+}
+
+.wave3 {
+  animation-duration: 24s;
+  opacity: 0.18;
+  transform: translateY(40px);
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-25%) translateY(-10px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* Main Container */
+#game-container {
+  position: relative;
+  z-index: 1;
+  width: 96%;
+  max-width: 1100px;
+  padding: 20px;
+}
+
+/* Screens */
+.screen {
+  display: none;
+  background: rgba(0, 15, 40, 0.88);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.screen.active {
+  display: block;
+}
+
+/* Typography */
+.title {
+  text-align: center;
+  font-size: 2.1rem;
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+  color: #c9ddff;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 0.98rem;
+  margin-bottom: 24px;
+  color: #c9ddff;
+}
+
+.hint {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #a9c7ff;
+}
+
+/* Center buttons */
+.center-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+/* Category Grid */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 10px;
+}
+
+/* Buttons */
+button {
+  border: none;
+}
+
+/* Category Buttons */
+.category-btn {
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #00b4db, #0083b0);
+  color: #f9fbff;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.category-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #00e1ff, #00a6ff);
+}
+
+/* Back & Primary Buttons */
+.back-btn,
+.primary-btn,
+.secondary-btn {
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.07);
+  color: #f9fbff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #00b4db, #0083b0);
+  color: #f9fbff;
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.07);
+  color: #f9fbff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.back-btn:hover,
+.primary-btn:hover,
+.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Top Bar */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.info-box {
+  background: rgba(0, 50, 100, 0.8);
+  border-radius: 999px;
+  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.info-box .label {
+  opacity: 0.8;
+}
+
+.info-box .value {
+  font-weight: 700;
+}
+
+/* Quiz Card */
+.quiz-card {
+  background: radial-gradient(circle at top, rgba(0, 180, 255, 0.28), rgba(0, 10, 30, 0.95));
+  border-radius: 22px;
+  padding: 22px;
+  border: 1px solid rgba(120, 190, 255, 0.3);
+  min-height: 340px;
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: #cfe4ff;
+}
+
+.current-category #category-name {
+  font-weight: 700;
+  color: #fff;
+  margin-inline-start: 6px;
+}
+
+.progress span {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Question Area */
+.question-area {
+  margin-bottom: 18px;
+}
+
+#question-text {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Choices */
+.choices {
+  display: grid;
+  gap: 10px;
+}
+
+.choice-btn {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(0, 34, 80, 0.9);
+  color: #f9fbff;
+  font-size: 0.95rem;
+  text-align: left;
+  border: 1px solid rgba(120, 190, 255, 0.25);
+  transition: background 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease, border 0.12s ease;
+}
+
+.choice-btn:hover {
+  background: rgba(0, 72, 140, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Choice States */
+.choice-btn.correct {
+  background: #1e8652;
+  border-color: #4be38c;
+}
+
+.choice-btn.wrong {
+  background: #8b1d35;
+  border-color: #ff6b8b;
+}
+
+/* Feedback */
+.feedback {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  min-height: 22px;
+}
+
+/* Instructions Box */
+.instructions-box {
+  background: rgba(0, 30, 80, 0.9);
+  border-radius: 16px;
+  padding: 16px 18px;
+  border: 1px solid rgba(140, 190, 255, 0.3);
+  font-size: 0.95rem;
+  max-height: none;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+.instructions-box ul {
+  margin-left: 22px;
+}
+
+.instructions-box li {
+  margin-bottom: 8px;
+}
+
+/* Result Box */
+.result-box {
+  background: rgba(0, 30, 80, 0.9);
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(140, 190, 255, 0.3);
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* Settings wrapper (ثابت في الزاوية) */
+.settings-wrapper {
+  position: fixed;
+  top: 10px;
+  right: 15px;
+  z-index: 9999;
+  direction: ltr;
+}
+
+/* زر ⚙ */
+.settings-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(0, 20, 60, 0.9);
+  color: #f9fbff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.settings-btn:hover {
+  background: rgba(0, 50, 100, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* القائمة المنسدلة للإعدادات */
+.settings-panel {
+  margin-top: 6px;
+  background: rgba(0, 15, 40, 0.96);
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(140, 190, 255, 0.5);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.65);
+  min-width: 190px;
+  display: none;
+}
+
+/* لما نفتحها */
+.settings-panel.open {
+  display: block;
+}
+
+/* تقسيم الأقسام داخل الإعدادات */
+.settings-section {
+  margin-bottom: 8px;
+}
+
+.settings-section:last-child {
+  margin-bottom: 0;
+}
+
+.settings-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9fb5ff;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* أزرار اللغة داخل الإعدادات */
+.lang-switcher-inside {
+  display: flex;
+  gap: 6px;
+}
+
+.lang-btn {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(0, 30, 80, 0.9);
+  color: #f9fbff;
+  font-size: 0.78rem;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.lang-btn.active {
+  background: #ffd700;
+  color: #002244;
+  transform: translateY(-1px);
+}
+
+/* أدوات الصوت داخل الإعدادات */
+.audio-controls-inside {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.audio-btn {
+  border: none;
+  background: transparent;
+  color: #f9fbff;
+  font-size: 1rem;
+  padding: 2px 4px;
+}
+
+.audio-btn:hover {
+  transform: translateY(-1px);
+}
+
+#volume-slider {
+  width: 90px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .quiz-card {
+    padding: 18px;
+  }
+
+  #question-text {
+    font-size: 1rem;
+  }
+
+  .category-btn {
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+}
+
+/* 🐙 المؤشر الخاص على كل الأزرار والخيارات والإعدادات */
+button,
+.choice-btn,
+.category-btn,
+.back-btn,
+.primary-btn,
+.secondary-btn,
+.settings-btn,
+.lang-btn,
+.audio-btn,
+#volume-slider {
+  cursor: url("images/octo-normal.png") 16 16, pointer;
+}
+
+/* ✋ لما تكبس على الزر تصير يد الأخطبوط */
+button:active,
+.choice-btn:active,
+.category-btn:active,
+.back-btn:active,
+.primary-btn:active,
+.secondary-btn:active,
+.settings-btn:active,
+.lang-btn:active {
+  cursor: url("images/octo-hand.png") 16 16, pointer;
+}
