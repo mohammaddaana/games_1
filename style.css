@@ -8,7 +8,6 @@
 
 /* Body with Ocean Theme */
 body {
-  cursor: url("images/octo-normal.png") 16 16, auto; /* مؤشر الأخطبوط */
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -17,11 +16,6 @@ body {
   overflow: hidden;
   color: #f9fbff;
 }
-
-body:active {
-  cursor: url("images/octo-hand.png") 16 16, auto; /* يد الأخطبوط لما تكبس في مكان فاضي */
-}
-
 .logo {
   display: block;
   margin: 0 auto 4px auto;
@@ -463,29 +457,29 @@ button {
     font-size: 0.95rem;
   }
 }
+@media (max-width: 700px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+} 
 
-/* 🐙 المؤشر الخاص على كل الأزرار والخيارات والإعدادات */
-button,
-.choice-btn,
-.category-btn,
-.back-btn,
-.primary-btn,
-.secondary-btn,
-.settings-btn,
-.lang-btn,
-.audio-btn,
-#volume-slider {
-  cursor: url("images/octo-normal.png") 16 16, pointer;
+
+/* المؤشر العادي في كل الصفحة */
+body {
+  cursor: url("images/octo-normal.png") 16 16, auto;
 }
 
-/* ✋ لما تكبس على الزر تصير يد الأخطبوط */
-button:active,
-.choice-btn:active,
-.category-btn:active,
-.back-btn:active,
-.primary-btn:active,
-.secondary-btn:active,
-.settings-btn:active,
-.lang-btn:active {
+/* المؤشر يتغيّر فقط عند الوقوف فوق الأزرار القابلة للنقر */
+button:hover,
+.choice-btn:hover,
+.category-btn:hover,
+.back-btn:hover,
+.primary-btn:hover,
+.secondary-btn:hover,
+.settings-btn:hover,
+.lang-btn:hover,
+.audio-btn:hover {
   cursor: url("images/octo-hand.png") 16 16, pointer;
 }
