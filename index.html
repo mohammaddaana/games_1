@@ -8,32 +8,26 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Ocean Waves Background -->
   <div class="wave wave1"></div>
   <div class="wave wave2"></div>
   <div class="wave wave3"></div>
 
   <div id="game-container">
 
-    <!-- Settings (Language + Audio) -->
     <div id="settings-wrapper" class="settings-wrapper">
-      <!-- زر الإعدادات -->
       <button id="settings-toggle" class="settings-btn" aria-label="Settings">⚙</button>
 
-      <!-- القائمة المنسدلة -->
       <div id="settings-panel" class="settings-panel">
-        <!-- قسم اللغة -->
         <div class="settings-section">
-          <span class="settings-label">Language</span>
+          <span class="settings-label">Language / اللغة</span>
           <div id="lang-switcher" class="lang-switcher-inside">
             <button class="lang-btn active" data-lang="en">EN</button>
             <button class="lang-btn" data-lang="ar">AR</button>
           </div>
         </div>
 
-        <!-- قسم الصوت -->
         <div class="settings-section">
-          <span class="settings-label">Sound</span>
+          <span class="settings-label">Sound / الصوت</span>
           <div id="audio-controls" class="audio-controls-inside">
             <button id="mute-btn" class="audio-btn" aria-label="Mute / Unmute">🔊</button>
             <input
@@ -49,60 +43,55 @@
       </div>
     </div>
 
-    <!-- Start Screen -->
     <div id="start-screen" class="screen active">
       <img src="images/kraken-logo.png" alt="Kraken Team Logo" class="logo" />
-      <h1 class="title" id="start-title"></h1>
-      <p class="subtitle" id="start-subtitle"></p>
+      <h1 class="title" id="start-title">Welcome</h1>
+      <p class="subtitle" id="start-subtitle">Ready to play?</p>
       <div class="center-buttons">
-        <button id="start-btn" class="primary-btn"></button>
-        <button id="instructions-btn" class="secondary-btn"></button>
+        <button id="start-btn" class="primary-btn">Start</button>
+        <button id="instructions-btn" class="secondary-btn">Help</button>
       </div>
     </div>
 
-    <!-- Instructions Screen -->
     <div id="instructions-screen" class="screen">
-      <h2 class="title" id="instr-title"></h2>
-
+      <h2 class="title" id="instr-title">Instructions</h2>
       <div class="instructions-box">
         <ul id="instr-list"></ul>
       </div>
-
       <div class="center-buttons">
-        <button id="instructions-back-btn" class="secondary-btn"></button>
-        <button id="go-categories-btn" class="primary-btn"></button>
+        <button id="instructions-back-btn" class="secondary-btn">Back</button>
+        <button id="go-categories-btn" class="primary-btn">Play</button>
       </div>
     </div>
 
-    <!-- Category Screen -->
     <div id="category-screen" class="screen">
-      <h1 class="title" id="cat-title"></h1>
-      <p class="subtitle" id="cat-subtitle"></p>
+      <h1 class="title" id="cat-title">Categories</h1>
+      <p class="subtitle" id="cat-subtitle">Select one</p>
 
       <div class="category-grid">
-        <button class="category-btn" data-category="geography" id="btn-cat-geo"></button>
-        <button class="category-btn" data-category="countries" id="btn-cat-countries"></button>
-        <button class="category-btn" data-category="it" id="btn-cat-it"></button>
-        <button class="category-btn" data-category="general" id="btn-cat-general"></button>
+        <button class="category-btn" data-category="geography" id="btn-cat-geo">Geography</button>
+        <button class="category-btn" data-category="countries" id="btn-cat-countries">Countries</button>
+        <button class="category-btn" data-category="it" id="btn-cat-it">IT</button>
+        <button class="category-btn" data-category="general" id="btn-cat-general">General</button>
+        <button class="category-btn" data-category="arduino" id="btn-cat-arduino">Arduino</button>
       </div>
 
-      <p class="hint" id="cat-hint"></p>
+      <p class="hint" id="cat-hint">Good Luck!</p>
 
       <div class="center-buttons">
-        <button id="category-back-btn" class="secondary-btn"></button>
+        <button id="category-back-btn" class="secondary-btn">Back</button>
       </div>
     </div>
 
-    <!-- Quiz Screen -->
     <div id="quiz-screen" class="screen">
       <div class="top-bar">
-        <button id="back-btn" class="back-btn"></button>
+        <button id="back-btn" class="back-btn">Exit</button>
         <div class="info-box">
-          <span class="label" id="label-coins"></span>
+          <span class="label" id="label-coins">Coins:</span>
           <span id="score" class="value">0</span> 🪙
         </div>
         <div class="info-box">
-          <span class="label" id="label-time"></span>
+          <span class="label" id="label-time">Time:</span>
           <span id="timer" class="value">10</span> s
         </div>
       </div>
@@ -110,66 +99,63 @@
       <div class="quiz-card">
         <div class="quiz-header">
           <div class="current-category">
-            <span id="label-category"></span>
-            <span id="category-name"></span>
+            <span id="label-category">Cat:</span>
+            <span id="category-name">...</span>
           </div>
           <div class="progress">
-            <span id="label-question"></span>
+            <span id="label-question">Q:</span>
             <span id="question-number">1</span> /
             <span id="total-questions">5</span>
           </div>
         </div>
 
         <div class="question-area">
-          <h2 id="question-text"></h2>
+          <h2 id="question-text">Question goes here...</h2>
         </div>
 
         <div id="choices" class="choices"></div>
-
         <div id="feedback" class="feedback"></div>
       </div>
     </div>
 
-    <!-- Final Result Screen -->
     <div id="result-screen" class="screen">
-      <h2 class="title" id="result-title"></h2>
+      <h2 class="title" id="result-title">Result</h2>
       <p class="subtitle">
-        <span id="result-label-category"></span>
+        <span id="result-label-category">Category: </span>
         <span id="result-category"></span>
       </p>
 
       <div class="result-box">
         <p>
-          <span id="result-label-total"></span>
-          <span id="result-total"></span>
+          <span id="result-label-total">Total: </span>
+          <span id="result-total">0</span>
         </p>
         <p>
-          <span id="result-label-correct"></span>
-          <span id="result-correct"></span>
+          <span id="result-label-correct">Correct: </span>
+          <span id="result-correct">0</span>
         </p>
         <p>
-          <span id="result-label-coins"></span>
-          <span id="result-coins"></span> 🪙
+          <span id="result-label-coins">Coins: </span>
+          <span id="result-coins">0</span> 🪙
         </p>
         <p>
-          <span id="result-label-accuracy"></span>
-          <span id="result-accuracy"></span>%
+          <span id="result-label-accuracy">Accuracy: </span>
+          <span id="result-accuracy">0</span>%
         </p>
       </div>
 
       <div class="center-buttons">
-        <button id="result-again-btn" class="primary-btn"></button>
-        <button id="result-home-btn" class="secondary-btn"></button>
+        <button id="result-again-btn" class="primary-btn">Again</button>
+        <button id="result-home-btn" class="secondary-btn">Home</button>
       </div>
     </div>
   </div>
 
-  <!-- Sounds -->
   <audio id="sound-correct" src="sounds/correct.mp3" preload="auto"></audio>
   <audio id="sound-wrong"   src="sounds/wrong.mp3"  preload="auto"></audio>
+  
   <audio id="sound-timeup"  src="sounds/timeup.mp3" preload="auto"></audio>
-  <audio id="bg-music"      src="sounds/wrong1.wav" loop></audio>
-
-  <script src="script.js"></script>
+  
+  <audio id="bg-music"      src="sounds/wrong1.wav" loop></audio> <script src="script.js"></script>
 </body>
 </html>
